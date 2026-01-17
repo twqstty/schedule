@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Расписание</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #020617;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      width: 90%;
+      max-width: 360px;
+    }
+    button {
+      margin: 8px;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>📅 Моё расписание</h2>
+    <p id="week"></p>
+    <button onclick="prevWeek()">⬅️ Предыдущая</button>
+    <button onclick="nextWeek()">Следующая ➡️</button>
+    <br><br>
+    <button onclick="openSchedule()">Открыть расписание</button>
+  </div>
+
+<script>
+  let currentDate = new Date();
+
+  function getMonday(d) {
+    d = new Date(d);
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+    return new Date(d.setDate(diff));
+  }
+
+  function formatDate(d) {
+    return d.toISOString().split('T')[0];
+  }
+
+  function updateText() {
+    const monday = getMonday(currentDate);
+    document.getElementById('week').innerText =
+      `Неделя с ${monday.toLocaleDateString()}`;
+  }
+
+  function openSchedule() {
+    const monday = getMonday(currentDate);
+    const url =
+      `https://schedule.mstimetables.ru/publications/cdb2a14c-a891-4f9f-b56c-7e8eb559c766#/groups/112/lessons?date=${formatDate(monday)}`;
+    window.location.href = url;
+  }
+
+  function nextWeek() {
+    currentDate.setDate(currentDate.getDate() + 7);
+    updateText();
+  }
+
+  function prevWeek() {
+    currentDate.setDate(currentDate.getDate() - 7);
+    updateText();
+  }
+
+  updateText();
+</script>
+</body>
+</html>
