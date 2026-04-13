@@ -12,7 +12,6 @@ function formatDate(d) {
   return d.toISOString().split('T')[0];
 }
 
-/* Анимация печати */
 function typeText(text) {
   const el = document.getElementById("typed");
   el.textContent = "";
@@ -52,7 +51,6 @@ function prevWeek() {
   updateText();
 }
 
-/* Запуск */
 updateText();
 document.getElementById("nextWeek").addEventListener("click", nextWeek);
 document.getElementById("prevWeek").addEventListener("click", prevWeek);
