@@ -90,7 +90,6 @@ button:active {
   transform: scale(0.97);
 }
 
-/* Вторичная кнопка */
 button.secondary {
   background: #020617;
   border: 1px solid #334155;
