@@ -37,7 +37,7 @@ function updateText() {
 function openSchedule() {
   const monday = getMonday(currentDate);
   const url =
-    `https://schedule.mstimetables.ru/publications/cdb2a14c-a891-4f9f-b56c-7e8eb559c766#/groups/112/lessons?date=${formatDate(monday)}`;
+    `https://site.mstimetables.ru/01a00f53-d327-73b5-b396-bf3eb6f57ce2/groups/301`;
   window.location.href = url;
 }
 
